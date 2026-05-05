@@ -3,16 +3,22 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "./ui/card"
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback } from "./ui/avatar"
+import { Button } from "./ui/button"
 
 import {
   Heart,
   MessageCircle,
   Share2
 } from "lucide-react"
+
+import { Badge } from "./ui/badge"
+
+import { TEMAS_LABEL, TIPOS_LABEL, MAGNITUDES_LABEL, CUSTOS_LABEL, IMPACTOS_LABEL } from "../lib/types"
+
+import { formatDate } from "../lib/formatDates"
 
 export function PostDetailCard({ post }) {
 
@@ -41,6 +47,39 @@ export function PostDetailCard({ post }) {
       {/* Conteúdo */}
       <CardContent className="space-y-4">
 
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2">
+          {post.tipo && (
+            <Badge variant="default">
+              {TIPOS_LABEL[post.tipo]}
+            </Badge>
+          )}
+
+          {post.tema && (
+            <Badge variant="secondary">
+              {TEMAS_LABEL[post.tema]}
+            </Badge>
+          )}
+
+          {post.magnitude && (
+            <Badge variant="secondary">
+              {MAGNITUDES_LABEL[post.magnitude]}
+            </Badge>
+          )}
+
+          {post.impacto && (
+            <Badge variant="secondary">
+              {IMPACTOS_LABEL[post.impacto]}
+            </Badge>
+          )}
+
+          {post.custo && (
+            <Badge variant="secondary">
+              Custo {CUSTOS_LABEL[post.custo]}
+            </Badge>
+          )}
+        </div>
+
         {/* Título */}
         <CardTitle className="text-lg">
           {post.title}
@@ -60,7 +99,7 @@ export function PostDetailCard({ post }) {
 
             {/* Texto */}
             <p className="text-sm leading-relaxed text-muted-foreground">
-            {post.createdAt}
+            {formatDate(post.createdAt)}
             </p>
 
         </div>
