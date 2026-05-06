@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import {
   Heart,
   MessageCircle,
-  Share2
+  HeartCrack
 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
@@ -54,10 +54,31 @@ export function CommentCard({ post }) {
 
         {/* Ações */}
         <div className="flex flex-wrap justify-center gap-2 pt-2">
-          <Button variant="ghost" size="sm" className="rounded-full">
-            <Heart className="w-4 h-4 mr-2" />
-            Curtir
-          </Button>
+          <div className="flex items-center gap-2">
+
+            {/* Like */}
+            <Button
+              variant={post.userReaction === "LIKE" ? "default" : "ghost"}
+              size="sm"
+              className="rounded-full"
+              onClick={handleOpenComments}
+            >
+              <Heart className="w-4 h-4 mr-1" />
+              {post.likes}
+            </Button>
+
+            {/* Dislike */}
+            <Button
+              variant={post.userReaction === "DISLIKE" ? "destructive" : "ghost"}
+              size="sm"
+              className="rounded-full"
+              onClick={handleOpenComments}
+            >
+              <HeartCrack className="w-4 h-4 mr-1" />
+              {post.dislikes}
+            </Button>
+
+          </div>
 
           <Button variant="ghost" size="sm" className="rounded-full" onClick={handleOpenComments}>
             <MessageCircle className="w-4 h-4 mr-2"/>

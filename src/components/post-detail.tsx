@@ -6,7 +6,7 @@ import {
 } from "./ui/card"
 import { Avatar, AvatarFallback } from "./ui/avatar"
 import { Button } from "./ui/button"
-import { Heart } from "lucide-react"
+import { Heart, HeartCrack } from "lucide-react"
 import { Badge } from "./ui/badge"
 import { TEMAS_LABEL, TIPOS_LABEL, MAGNITUDES_LABEL, CUSTOS_LABEL, IMPACTOS_LABEL } from "../lib/types"
 import { formatDate } from "../lib/formatDates"
@@ -158,7 +158,8 @@ export function PostDetailCard({ post }) {
               className="rounded-full"
               onClick={() => handleReaction("DISLIKE")}
             >
-              👎 {localPost.dislikes}
+              <HeartCrack className="w-4 h-4 mr-1" />
+              {localPost.dislikes}
             </Button>
 
           </div>

@@ -12,7 +12,8 @@ import { Button } from "./ui/button"
 
 import {
   Heart,
-  MessageCircle
+  MessageCircle,
+  HeartCrack
 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
@@ -110,7 +111,8 @@ export function PostCard({ post }) {
               className="rounded-full"
               onClick={handleOpenComments}
             >
-              👎 {post.dislikes}
+              <HeartCrack className="w-4 h-4 mr-1" />
+              {post.dislikes}
             </Button>
 
           </div>
