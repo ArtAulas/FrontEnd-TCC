@@ -1,4 +1,4 @@
-import { Welcomeform } from "@/components/welcome-form"
+import { Welcomeform } from "./components/welcome-form"
 
 export default function Page() {
   return (

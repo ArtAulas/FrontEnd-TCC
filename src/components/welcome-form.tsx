@@ -20,13 +20,13 @@ export function Welcomeform() {
               size="sm"
               onClick={() => navigate("/signin")}
             >
-              Sign In
+              Login
             </Button>
             <Button
               size="sm"
               onClick={() => navigate("/signup")}
             >
-              Sign Up
+              Cadastre-se
             </Button>
           </div>
         </div>

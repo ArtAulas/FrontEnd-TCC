@@ -50,9 +50,9 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle>Login to your account</CardTitle>
+          <CardTitle>Entre com sua conta</CardTitle>
           <CardDescription>
-            Enter your email below to login to your account
+            Informe seu email para realizar login
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -63,7 +63,7 @@ export function LoginForm({
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="m@email.com"
                   required
                   value = {email}
                   onChange={(e:any) => setEmail(e.target.value)}
@@ -71,13 +71,7 @@ export function LoginForm({
               </Field>
               <Field>
                 <div className="flex items-center">
-                  <FieldLabel htmlFor="password">Password</FieldLabel>
-                  <a
-                    href="#"
-                    className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
-                  >
-                    Forgot your password?
-                  </a>
+                  <FieldLabel htmlFor="password">Senha</FieldLabel>
                 </div>
                 <Input 
                   id="password" 
@@ -88,14 +82,14 @@ export function LoginForm({
                 />
               </Field>
               <Field>
-                <Button type="submit">Login</Button>
+                <Button type="submit">Entrar</Button>
                 {/* <Button variant="outline" type="button">
                   Login with Google
                 </Button> */}
                 <FieldDescription className="text-center">
-                  Don&apos;t have an account?{" "}
+                  Não tem uma conta?{" "}
                   <a onClick={() => navigate("/signup")} className="cursor-pointer hover:underline">
-                    Sign up
+                    Cadastrar
                   </a>
                 </FieldDescription>
               </Field>

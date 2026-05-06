@@ -1,21 +1,22 @@
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
+import { Button } from "./ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "./ui/card"
 import {
   Field,
   FieldDescription,
   FieldGroup,
   FieldLabel,
-} from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
+} from "./ui/field"
+import { Input } from "./ui/input"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import { toast } from "sonner"
 
 //EXPORT FUNCTION
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
@@ -29,19 +30,27 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const navigate = useNavigate()
+
+  const [estado, setEstado] = useState("")
+  const [cidade, setCidade] = useState("")
   
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
     // PASSWORD VALIDATOR
     if (password !== confirmPassword) {
-      alert("As senhas não coincidem!")
+      toast.warning("As senhas não coincidem!")
       return
     }
 
     // 🔥 ALTERAÇÃO 2: validar data
     if (!birthDate) {
-      alert("Selecione a data de nascimento")
+      toast.warning("Selecione a data de nascimento")
+      return
+    }
+
+    if (!estado || !cidade){
+      toast.warning("É necessário compartilhar sua localização.")
       return
     }
 
@@ -57,9 +66,12 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
         // 🔥 ALTERAÇÃO 3: enviar birthDate (não age)
         birthDate: new Date(birthDate),
+
+        cidade,
+        estado
       })
 
-      alert("Conta criada com sucesso!")
+      toast.success("Conta criada com sucesso!")
 
       navigate("/signin")
 
@@ -67,30 +79,52 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
       console.error("Erro ao cadastrar:", error)
 
       if (error.response) {
-        alert(error.response.data.message || "Erro ao cadastrar usuário")
+        toast.error(error.response.data.message || "Erro ao cadastrar usuário")
       } else {
-        alert("Erro de conexão com o servidor")
+        toast.error("Erro de conexão com o servidor")
       }
     }
   }
 
+  const buscarLocal = async () =>{
+    navigator.geolocation.getCurrentPosition(
+      async (position) => {
+        const { latitude, longitude } = position.coords
+        const response = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`
+        )
+        const data = await response.json()
+        setEstado(data.address.state)
+        setCidade(data.address.city)
+      },
+      (error) => {
+        if (error.code===1){
+          toast.error("Por Favor, permita acesso a sua localização.")
+        }
+        console.error(error)
+      })}
+
+  useEffect(()=>{
+    buscarLocal()
+  },[])
+
   return (
     <Card {...props}>
       <CardHeader>
-        <CardTitle>Create an account</CardTitle>
+        <CardTitle>Crie uma conta</CardTitle>
         <CardDescription>
-          Enter your information below to create your account
+          Preencha suas informações abaixo para criar sua conta
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit}>
           <FieldGroup>
             <Field>
-              <FieldLabel htmlFor="name">Full Name</FieldLabel>
+              <FieldLabel htmlFor="name">Nome Completo</FieldLabel>
               <Input 
                 id="name" 
                 type="text" 
-                placeholder="John Doe"
+                placeholder="José Silva"
                 onChange={(e) => setName(e.target.value)}
                 required
               />
@@ -101,18 +135,17 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               <Input
                 id="email"
                 type="email"
-                placeholder="your@mail.com"
+                placeholder="josesilva@mail.com"
                 onChange={(e) => setEmail(e.target.value)}
                 required
               />
               <FieldDescription>
-                We&apos;ll use this to contact you. We will not share your email
-                with anyone else.
+                O email só será usado para identificação. Nós não iremos compartilhar suas informações
               </FieldDescription>
             </Field>
 
             <Field>
-              <FieldLabel htmlFor="birthDate">Birth date</FieldLabel>
+              <FieldLabel htmlFor="birthDate">Data de Nascimento</FieldLabel>
               <Input
                 id="birthDate"
                 type="date"
@@ -137,8 +170,39 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               />
             </Field>
 
+            <div className="flex flex-col gap-2">
+              <div className="grid grid-cols-2 gap-4">
+                <Field>
+                  <FieldLabel htmlFor="cidade">Cidade</FieldLabel>
+                  <Input 
+                    id="cidade" 
+                    type="text"
+                    value={cidade}
+                    onChange={(e) => setCidade(e.target.value)}
+                    disabled={true}
+                  />
+                </Field>
+
+                <Field>
+                  <FieldLabel htmlFor="estado">Estado</FieldLabel>
+                  <Input 
+                    id="estado" 
+                    type="text"
+                    value={estado}
+                    onChange={(e) => setEstado(e.target.value)}
+                    disabled={true}
+                  />
+                </Field>
+              </div>
+                <FieldDescription>
+                  Buscamos sua localização automaticamente, ela será exibida para outros usuários.
+                  <br/>Guardamos somente o Estado e a Cidade em que você realizou o cadastro.
+                  <br/>Por favor, permita que o navegador identifique sua localização.
+                </FieldDescription>
+            </div>
+
             <Field>
-              <FieldLabel htmlFor="password">Password</FieldLabel>
+              <FieldLabel htmlFor="password">Senha</FieldLabel>
               <Input 
                 id="password" 
                 type="password"
@@ -148,13 +212,13 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 required 
               />
               <FieldDescription>
-                Must be at least 8 characters long.
+                Deve ter ao menos 8 caracteres.
               </FieldDescription>
             </Field>
 
             <Field>
               <FieldLabel htmlFor="confirm-password">
-                Confirm Password
+                Confirme a Senha
               </FieldLabel>
               <Input 
                 id="confirm-password"
@@ -163,20 +227,20 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
-              <FieldDescription>Please confirm your password.</FieldDescription>
+              <FieldDescription>Por Favor, confirme sua senha.</FieldDescription>
             </Field>
 
             <FieldGroup>
               <Field>
-                <Button type="submit">Create Account</Button>
+                <Button type="submit">Criar Conta</Button>
 
                 <FieldDescription className="px-6 text-center">
-                  Already have an account?{" "}
+                  Já tem uma conta?{" "}
                   <a 
                     onClick={() => navigate("/signin")} 
                     className="cursor-pointer hover:underline"
                   >
-                    Sign in
+                    Entrar
                   </a>
                 </FieldDescription>
               </Field>
