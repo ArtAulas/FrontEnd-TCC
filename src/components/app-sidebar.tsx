@@ -30,6 +30,10 @@ export function AppSidebar({ onPostCreated }) {
     navigate("/")
   }
 
+  const handleInicial = () => {
+    navigate("/home")
+  }
+
   return (
     <Sidebar>
       {/* Header */}
@@ -48,16 +52,23 @@ export function AppSidebar({ onPostCreated }) {
             <SidebarMenu>
 
               <SidebarMenuItem>
+                <SidebarMenuButton onClick={handleInicial}>
+                  <Home className="mr-2 h-4 w-4" />
+                  Tela Inicial
+                </SidebarMenuButton>
+              </SidebarMenuItem>
+
+              <SidebarMenuItem>
                 <SidebarMenuButton>
                   <User className="mr-2 h-4 w-4" />
-                  Profile
+                  Perfil
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
               <SidebarMenuItem>
                 <SidebarMenuButton>
                   <Settings className="mr-2 h-4 w-4" />
-                  Settings
+                  Configurações
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
@@ -77,7 +88,7 @@ export function AppSidebar({ onPostCreated }) {
           <SidebarMenuItem>
             <SidebarMenuButton onClick={handleLogout} >
               <LogOut className="mr-2 h-4 w-4" />
-              Logout
+              Deslogar
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
