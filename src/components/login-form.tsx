@@ -38,7 +38,6 @@ export function LoginForm({
         alert("Login realizado com sucesso")
       }
       localStorage.setItem("userId", response.data.user_id)
-      console.log(response)
       navigate("/verify")
 
     } catch (error){

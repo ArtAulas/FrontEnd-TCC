@@ -6,8 +6,13 @@ export default function PostList({ reload }){
     const [posts, setPosts] = useState([])
 
     const buscarPosts = async() => {
+        const userId = localStorage.getItem("userId")
         try{
-            const response = await axios.get("http://localhost:3000/allposts")
+            const response = await axios.get("http://localhost:3000/allposts/", {
+                params: {
+                    userId: userId
+                }
+            })
             setPosts(response.data)
         }catch(e){
             console.error(e)

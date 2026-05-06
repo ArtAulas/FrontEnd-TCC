@@ -13,10 +13,15 @@ export default function PostDetail() {
     const [post, setPost] = useState()
     const [commentList, setCommentList] = useState([])
     const { id } = useParams()
+    const userId = localStorage.getItem("userId")
 
     const buscarPost = async() => {
         try{
-            const response = await axios.get(`http://localhost:3000/post/${id}`)
+            const response = await axios.get(`http://localhost:3000/post/${id}`, {
+                params: {
+                    userId: userId
+                }
+            })
             setPost(response.data)
         }catch(e){
             console.error(e)
@@ -25,8 +30,11 @@ export default function PostDetail() {
 
     const buscarCommentarios = async() => {
         try{
-            const response = await axios.get(`http://localhost:3000/allcomments/${id}`)
-            console.log(response.data)
+            const response = await axios.get(`http://localhost:3000/allcomments/${id}`, {
+                params: {
+                    userId: userId
+                }
+            })
             setCommentList(response.data)
         }catch(e){
             console.error(e)

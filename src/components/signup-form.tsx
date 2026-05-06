@@ -59,8 +59,6 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
         birthDate: new Date(birthDate),
       })
 
-      console.log("Usuário criado:", response.data)
-
       alert("Conta criada com sucesso!")
 
       navigate("/signin")
