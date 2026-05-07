@@ -17,6 +17,7 @@ import { Input } from "./ui/input"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import { toast } from "sonner"
+import { TestaCPF, formatCPF } from "../lib/utils"
 
 //EXPORT FUNCTION
 export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
@@ -39,23 +40,24 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
     // PASSWORD VALIDATOR
     if (password !== confirmPassword) {
-      toast.warning("As senhas não coincidem!")
-      return
+      return toast.warning("As senhas não coincidem!")
     }
 
     // 🔥 ALTERAÇÃO 2: validar data
     if (!birthDate) {
-      toast.warning("Selecione a data de nascimento")
-      return
+      return toast.warning("Selecione a data de nascimento")
     }
 
     if (!estado || !cidade){
-      toast.warning("É necessário compartilhar sua localização.")
-      return
+      return toast.warning("É necessário compartilhar sua localização.")
     }
 
     // CPF FUNCTION
     const cpfLimpo = cpf.replace(/\D/g, "")
+
+    if (!TestaCPF(cpfLimpo)){
+      return toast.error("CPF Inválido. Informe um CPF Válido")
+    }
 
     try {
       const response = await axios.post("http://localhost:3000/users", {
@@ -161,11 +163,12 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
               <FieldLabel htmlFor="cpf">CPF</FieldLabel>
               <Input 
                 id="cpf" 
+                value={cpf}
                 type="text" 
                 placeholder="000.000.000-00" 
                 inputMode="numeric"
                 maxLength={14}
-                onChange={(e) => setCpf(e.target.value)}
+                onChange={(e) => setCpf(formatCPF(e.target.value))}
                 required 
               />
             </Field>
