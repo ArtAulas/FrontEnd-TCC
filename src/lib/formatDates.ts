@@ -38,3 +38,9 @@ export const formatDate = (dateString:string) => {
     minute: "2-digit",
   }).format(date)
 }
+
+export const formatBirthDate = (dateString?: string) => {
+  if (!dateString) return ""
+
+  return new Date(dateString).toLocaleDateString("pt-BR")
+}

@@ -5,6 +5,7 @@ import Verify from './2FACode.tsx'
 import Welcome from './Welcome.tsx'
 import Home from './Home.tsx'
 import PostDetail from './PostDetail.tsx'
+import UserPage from './User.tsx'
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/" element={<Welcome />} />
         <Route path="/home" element={<Home />} />
         <Route path="/post/:id" element={<PostDetail/>}/>
+        <Route path="/user/:id" element={<UserPage/>}/>
       </Routes>
     </BrowserRouter>
   )

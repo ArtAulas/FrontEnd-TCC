@@ -9,7 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuItem,
   SidebarMenuButton,
-} from "@/components/ui/sidebar"
+} from "./ui/sidebar"
 
 import {
   Home,
@@ -32,6 +32,11 @@ export function AppSidebar({ onPostCreated }) {
 
   const handleInicial = () => {
     navigate("/home")
+  }
+
+  const handlePerfil = () =>{
+    const authorId = localStorage.getItem("userId")
+    navigate(`/user/${authorId}`)
   }
 
   return (
@@ -59,9 +64,9 @@ export function AppSidebar({ onPostCreated }) {
               </SidebarMenuItem>
 
               <SidebarMenuItem>
-                <SidebarMenuButton>
+                <SidebarMenuButton onClick={handlePerfil}>
                   <User className="mr-2 h-4 w-4" />
-                  Perfil
+                  Meu Perfil
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
