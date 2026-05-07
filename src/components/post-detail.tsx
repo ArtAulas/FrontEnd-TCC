@@ -13,10 +13,12 @@ import { formatDate } from "../lib/formatDates"
 import axios from "axios"
 import { toast } from "sonner"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export function PostDetailCard({ post }) {
   const [localPost, setLocalPost] = useState(post)
   const userId = localStorage.getItem("userId")
+  const navigate = useNavigate()
 
   const handleReaction = async (type) => {
     try {
@@ -67,12 +69,16 @@ export function PostDetailCard({ post }) {
     }
   }
 
+  const handleAvatarClick = () =>{
+    navigate(`/user/${post.author.id}`)
+  }
+
   return (
     <Card className="w-full max-w-2xl mx-auto rounded-2xl shadow-sm">
       
       {/* Cabeçalho */}
       <CardHeader className="flex flex-row items-center gap-3 pb-2">
-        <Avatar>
+        <Avatar className="cursor-pointer" onClick={handleAvatarClick}>
           <AvatarFallback>
             {localPost.author?.name?.charAt(0) || "U"}
           </AvatarFallback>
@@ -144,7 +150,7 @@ export function PostDetailCard({ post }) {
             <Button
               variant={localPost.userReaction === "LIKE" ? "default" : "ghost"}
               size="sm"
-              className="rounded-full"
+              className="cursor-pointer rounded-full"
               onClick={() => handleReaction("LIKE")}
             >
               <Heart className="w-4 h-4 mr-1" />
@@ -155,7 +161,7 @@ export function PostDetailCard({ post }) {
             <Button
               variant={localPost.userReaction === "DISLIKE" ? "destructive" : "ghost"}
               size="sm"
-              className="rounded-full"
+              className="cursor-pointer rounded-full"
               onClick={() => handleReaction("DISLIKE")}
             >
               <HeartCrack className="w-4 h-4 mr-1" />

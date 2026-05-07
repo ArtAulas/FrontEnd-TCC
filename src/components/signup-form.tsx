@@ -235,7 +235,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
 
             <FieldGroup>
               <Field>
-                <Button type="submit">Criar Conta</Button>
+                <Button className="cursor-pointer" type="submit">Criar Conta</Button>
 
                 <FieldDescription className="px-6 text-center">
                   Já tem uma conta?{" "}

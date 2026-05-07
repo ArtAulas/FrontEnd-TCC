@@ -13,9 +13,9 @@ export default function UserPage(){
         <AppSidebar onPostCreated={() => setReload(!reload)} />
             <main className="flex-1 min-h-screen bg-muted/30">
                 <header className="h-14 border-b bg-background flex items-center px-4 sticky top-0 z-10">
-                    <SidebarTrigger />
+                    <SidebarTrigger className="cursor-pointer" />
                     <h1 className="ml-4 font-semibold text-lg">
-                        Post
+                        Usuário
                     </h1>
                 </header>
                 { id ? <User id={id} /> : <p>Usuário não identificado.</p> }

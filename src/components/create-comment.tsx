@@ -43,7 +43,7 @@ export default function CreateComment({ postId, onCommentCreated }) {
       />
 
       <Button
-        className="mt-3 w-full"
+        className="cursor-pointer mt-3 w-full"
         onClick={criarComentario}
         disabled={loading}
       >

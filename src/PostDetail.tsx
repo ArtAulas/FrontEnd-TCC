@@ -54,7 +54,7 @@ export default function PostDetail() {
 
             {/* Topbar */}
             <header className="h-14 border-b bg-background flex items-center px-4 shrink-0">
-                <SidebarTrigger />
+                <SidebarTrigger className="cursor-pointer"/>
                 <h1 className="ml-4 font-semibold text-lg">
                     Post
                 </h1>

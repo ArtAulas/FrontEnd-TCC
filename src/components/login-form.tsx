@@ -82,7 +82,7 @@ export function LoginForm({
                 />
               </Field>
               <Field>
-                <Button type="submit">Entrar</Button>
+                <Button className="cursor-pointer" type="submit">Entrar</Button>
                 {/* <Button variant="outline" type="button">
                   Login with Google
                 </Button> */}

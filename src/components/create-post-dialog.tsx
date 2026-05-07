@@ -89,7 +89,7 @@ export function CreatePostDialog({ onPostCreated }:Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" className="w-full justify-start">
+        <Button variant="ghost" className="cursor-pointer w-full justify-start">
           <Pencil className="mr-2 h-4 w-4" />
           Post
         </Button>
@@ -205,10 +205,10 @@ export function CreatePostDialog({ onPostCreated }:Props) {
           </div>
 
           <div className="flex gap-2">
-            <Button className="flex-1" onClick={criarPost}>
+            <Button className="cursor-pointer flex-1" onClick={criarPost}>
               Publicar
             </Button>
-            <Button variant="outline" className="flex-1" onClick={resetForm}>
+            <Button variant="outline" className="cursor-pointer flex-1" onClick={resetForm}>
               Limpar
             </Button>
           </div>

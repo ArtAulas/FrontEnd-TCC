@@ -28,6 +28,10 @@ export function PostCard({ post }) {
     navigate(`/post/${post.id}`)
   }
 
+  const handleAvatarClick = () =>{
+    navigate(`/user/${post.author.id}`)
+  }
+
   return (
     <Card className="w-full max-w-2xl mx-auto rounded-2xl shadow-sm">
       
@@ -36,7 +40,7 @@ export function PostCard({ post }) {
         
         {/* Lado esquerdo */}
         <div className="flex items-center gap-3">
-          <Avatar>
+          <Avatar className="cursor-pointer" onClick={handleAvatarClick}>
             <AvatarFallback>
               {post.author?.name?.charAt(0) || "U"}
             </AvatarFallback>
@@ -97,7 +101,7 @@ export function PostCard({ post }) {
             <Button
               variant={post.userReaction === "LIKE" ? "default" : "ghost"}
               size="sm"
-              className="rounded-full"
+              className="cursor-pointer rounded-full"
               onClick={handleOpenComments}
             >
               <Heart className="w-4 h-4 mr-1" />
@@ -108,7 +112,7 @@ export function PostCard({ post }) {
             <Button
               variant={post.userReaction === "DISLIKE" ? "destructive" : "ghost"}
               size="sm"
-              className="rounded-full"
+              className="cursor-pointer rounded-full"
               onClick={handleOpenComments}
             >
               <HeartCrack className="w-4 h-4 mr-1" />
@@ -117,7 +121,7 @@ export function PostCard({ post }) {
 
           </div>
 
-          <Button variant="ghost" size="sm" className="rounded-full" onClick={handleOpenComments}>
+          <Button variant="ghost" size="sm" className="cursor-pointer rounded-full" onClick={handleOpenComments}>
             <MessageCircle className="w-4 h-4 mr-2"/>
             Comentar
           </Button>

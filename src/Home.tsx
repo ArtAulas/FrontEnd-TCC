@@ -12,7 +12,7 @@ export default function Home() {
       <main className="flex-1 min-h-screen bg-muted/30">
         {/* Topbar */}
         <header className="h-14 border-b bg-background flex items-center px-4 sticky top-0 z-10">
-          <SidebarTrigger />
+          <SidebarTrigger className="cursor-pointer" />
           <h1 className="ml-4 font-semibold text-lg">
             Início
           </h1>

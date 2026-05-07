@@ -57,25 +57,25 @@ export function AppSidebar({ onPostCreated }) {
             <SidebarMenu>
 
               <SidebarMenuItem>
-                <SidebarMenuButton onClick={handleInicial}>
-                  <Home className="mr-2 h-4 w-4" />
+                <SidebarMenuButton className="cursor-pointer" onClick={handleInicial}>
+                  <Home className="cursor-pointer mr-2 h-4 w-4" />
                   Tela Inicial
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
               <SidebarMenuItem>
-                <SidebarMenuButton onClick={handlePerfil}>
-                  <User className="mr-2 h-4 w-4" />
+                <SidebarMenuButton className="cursor-pointer" onClick={handlePerfil}>
+                  <User className="cursor-pointer mr-2 h-4 w-4" />
                   Meu Perfil
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
-              <SidebarMenuItem>
+              {/* <SidebarMenuItem>
                 <SidebarMenuButton>
                   <Settings className="mr-2 h-4 w-4" />
                   Configurações
                 </SidebarMenuButton>
-              </SidebarMenuItem>
+              </SidebarMenuItem> */}
 
               <SidebarMenuItem>
                 <SidebarMenuButton>
@@ -91,7 +91,7 @@ export function AppSidebar({ onPostCreated }) {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton onClick={handleLogout} >
+            <SidebarMenuButton className="cursor-pointer" onClick={handleLogout} >
               <LogOut className="mr-2 h-4 w-4" />
               Deslogar
             </SidebarMenuButton>

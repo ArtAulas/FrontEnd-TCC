@@ -22,12 +22,16 @@ export function CommentCard({ post }) {
     navigate(`/post/${post.id}`)
   }
 
+  const handleAvatarClick = () =>{
+    navigate(`/user/${post.author.id}`)
+  }
+
   return (
     <Card className="w-full max-w-2xl mx-auto rounded-2xl shadow-sm">
       
       {/* Cabeçalho */}
       <CardHeader className="flex flex-row items-center gap-3 pb-2">
-        <Avatar>
+        <Avatar className="cursor-pointer" onClick={handleAvatarClick}>
           <AvatarFallback>
             {post.author?.name?.charAt(0) || "U"}
           </AvatarFallback>
@@ -60,7 +64,7 @@ export function CommentCard({ post }) {
             <Button
               variant={post.userReaction === "LIKE" ? "default" : "ghost"}
               size="sm"
-              className="rounded-full"
+              className="cursor-pointer rounded-full"
               onClick={handleOpenComments}
             >
               <Heart className="w-4 h-4 mr-1" />
@@ -71,7 +75,7 @@ export function CommentCard({ post }) {
             <Button
               variant={post.userReaction === "DISLIKE" ? "destructive" : "ghost"}
               size="sm"
-              className="rounded-full"
+              className="cursor-pointer rounded-full"
               onClick={handleOpenComments}
             >
               <HeartCrack className="w-4 h-4 mr-1" />
@@ -80,7 +84,7 @@ export function CommentCard({ post }) {
 
           </div>
 
-          <Button variant="ghost" size="sm" className="rounded-full" onClick={handleOpenComments}>
+          <Button variant="ghost" size="sm" className="cursor-pointer rounded-full" onClick={handleOpenComments}>
             <MessageCircle className="w-4 h-4 mr-2"/>
             Comentar
           </Button>

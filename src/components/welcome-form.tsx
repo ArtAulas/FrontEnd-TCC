@@ -16,6 +16,7 @@ export function Welcomeform() {
           <h1 className="text-base font-medium">Projeto TCC</h1>
           <div className="flex gap-2">
             <Button
+              className="cursor-pointer"
               variant="outline"
               size="sm"
               onClick={() => navigate("/signin")}
@@ -23,6 +24,7 @@ export function Welcomeform() {
               Login
             </Button>
             <Button
+              className="cursor-pointer"
               size="sm"
               onClick={() => navigate("/signup")}
             >
