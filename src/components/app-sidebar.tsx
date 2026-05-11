@@ -14,15 +14,17 @@ import {
 import {
   Home,
   User,
-  Settings,
   LogOut,
-  Pencil,
 } from "lucide-react"
 
 import { CreatePostDialog } from "./create-post-dialog"
 import { useNavigate } from "react-router-dom"
 
-export function AppSidebar({ onPostCreated }) {
+type Props ={
+  onPostCreated: () => void
+}
+
+export function AppSidebar({ onPostCreated }:Props) {
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -70,17 +72,8 @@ export function AppSidebar({ onPostCreated }) {
                 </SidebarMenuButton>
               </SidebarMenuItem>
 
-              {/* <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <Settings className="mr-2 h-4 w-4" />
-                  Configurações
-                </SidebarMenuButton>
-              </SidebarMenuItem> */}
-
               <SidebarMenuItem>
-                <SidebarMenuButton>
-                  <CreatePostDialog onPostCreated={ onPostCreated }/>
-                </SidebarMenuButton>
+                <CreatePostDialog onPostCreated={ onPostCreated }/>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>

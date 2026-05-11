@@ -14,6 +14,8 @@ import {
   SelectValue,
 } from "./ui/select"
 
+import { SidebarMenuButton } from "./ui/sidebar"
+
 import { Label } from "./ui/label"
 
 import { Button } from "./ui/button"
@@ -89,10 +91,10 @@ export function CreatePostDialog({ onPostCreated }:Props) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="ghost" className="cursor-pointer w-full justify-start">
+        <SidebarMenuButton className="cursor-pointer w-full justify-start">
           <Pencil className="mr-2 h-4 w-4" />
           Post
-        </Button>
+        </SidebarMenuButton>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-lg rounded-2xl">
