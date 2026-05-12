@@ -20,7 +20,7 @@ export function User({ id }:Props){
 
     const fetchData = async() => {
         try{
-            const response = await axios.get(`http://localhost:3000/user/${id}`)
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/user/${id}`)
             setUser(response.data)
         } catch(e) {
             console.error(e)
@@ -30,7 +30,7 @@ export function User({ id }:Props){
     const fetchPosts = async() =>{
         const userId = localStorage.getItem("userId")
         try{
-            const response = await axios.get(`http://localhost:3000/user/posts`,{
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/user/posts`,{
                 params: {
                     authorId: id,
                     userId: userId

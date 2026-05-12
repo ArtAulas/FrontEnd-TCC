@@ -15,7 +15,7 @@ export function VerifyCode() {
 
   const handleVerifyCode = async () => {
     try {
-      const response = await axios.post("http://localhost:3000/verify-code", {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/verify-code`, {
         userId,
         code
       })

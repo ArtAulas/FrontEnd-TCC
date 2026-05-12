@@ -60,7 +60,7 @@ export function PostDetailCard({ post }:{ post:Post }) {
         }
       })
 
-      await axios.post("http://localhost:3000/reaction", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/reaction`, {
         userId,
         postId: post.id,
         type

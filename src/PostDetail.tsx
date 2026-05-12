@@ -18,7 +18,7 @@ export default function PostDetail() {
 
     const buscarPost = async() => {
         try{
-            const response = await axios.get(`http://localhost:3000/post/${id}`, {
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/post/${id}`, {
                 params: {
                     userId: userId
                 }
@@ -31,7 +31,7 @@ export default function PostDetail() {
 
     const buscarCommentarios = async() => {
         try{
-            const response = await axios.get(`http://localhost:3000/allcomments/${id}`, {
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/allcomments/${id}`, {
                 params: {
                     userId: userId
                 }

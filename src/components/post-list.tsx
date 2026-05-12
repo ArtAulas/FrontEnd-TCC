@@ -28,7 +28,7 @@ export default function PostList({ reload }:Props) {
     const buscarPosts = async () => {
         const userId = localStorage.getItem("userId")
         try {
-            const response = await axios.get("http://localhost:3000/allposts/", {
+            const response = await axios.get(`${import.meta.env.VITE_API_URL}/allposts/`, {
                 params: {
                     userId: userId,
                     magnitude,

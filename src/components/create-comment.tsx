@@ -21,7 +21,7 @@ export default function CreateComment({ postId, onCommentCreated }:Props) {
 
       setLoading(true)
 
-      await axios.post("http://localhost:3000/posts", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/posts`, {
         content,
         published: true,
         authorId,

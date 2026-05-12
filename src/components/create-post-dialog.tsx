@@ -52,7 +52,7 @@ export function CreatePostDialog({ onPostCreated }:Props) {
     }
 
     try {
-      await axios.post("http://localhost:3000/posts", {
+      await axios.post(`${import.meta.env.VITE_API_URL}/posts`, {
         title:title,
         content:content,
         published: true,
