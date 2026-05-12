@@ -1,6 +1,7 @@
 import { CommentCard } from "./comment";
+import type { Post } from "../lib/types";
 
-export default function CommentList({ comments }){
+export default function CommentList({ comments }:{ comments : Post[] }){
 
     return(
     <div className="flex flex-col gap-5">

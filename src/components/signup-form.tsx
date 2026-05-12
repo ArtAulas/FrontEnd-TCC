@@ -60,7 +60,7 @@ export function SignupForm({ ...props }: React.ComponentProps<typeof Card>) {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/users", {
+      await axios.post("http://localhost:3000/users", {
         name,
         email,
         cpf: cpfLimpo,

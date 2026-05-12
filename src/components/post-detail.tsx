@@ -14,13 +14,16 @@ import axios from "axios"
 import { toast } from "sonner"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import type { Post } from "../lib/types"
 
-export function PostDetailCard({ post }) {
+export function PostDetailCard({ post }:{ post:Post }) {
   const [localPost, setLocalPost] = useState(post)
   const userId = localStorage.getItem("userId")
   const navigate = useNavigate()
 
-  const handleReaction = async (type) => {
+  type Reacao = 'LIKE'|'DISLIKE'
+
+  const handleReaction = async (type:Reacao) => {
     try {
       // 🔥 atualização otimista
       setLocalPost(prev => {

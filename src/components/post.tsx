@@ -20,8 +20,9 @@ import { useNavigate } from "react-router-dom"
 import { TEMAS_LABEL, TIPOS_LABEL } from "../lib/types"
 
 import { formatRelativeDate } from "../lib/formatDates"
+import type { Post } from "../lib/types"
 
-export function PostCard({ post }) {
+export function PostCard({ post }:{post:Post}) {
   const navigate = useNavigate()
 
   const handleOpenComments = () =>{

@@ -54,3 +54,80 @@ export const Custos = [
 export const CUSTOS_LABEL = Object.fromEntries(
   Custos.map(c => [c.value, c.label])
 )
+
+export type Magnitude =
+  | "MUNICIPAL"
+  | "ESTADUAL"
+  | "FEDERAL"
+
+export type Tema =
+  | "SAUDE"
+  | "EDUCACAO"
+  | "SEGURANCA"
+  | "TRANSPORTE"
+  | "MEIO_AMBIENTE"
+  | "TECNOLOGIA"
+  | "OUTRO"
+
+export type Tipo =
+  | "SUGESTAO"
+  | "PROBLEMA"
+  | "APOIO"
+  | "CONSULTA"
+
+export type Impacto =
+  | "SOCIAL"
+  | "ECONOMICO"
+  | "AMBIENTAL"
+  | "OUTRO"
+
+export type Custo =
+  | "BAIXO"
+  | "MEDIO"
+  | "ALTO"
+  | "NAO_SEI"
+
+export type ReactionType =
+  | "LIKE"
+  | "DISLIKE"
+
+export type UserReaction = "LIKE" | "DISLIKE" | null
+
+export type User = {
+    id : string, 
+    email : string, 
+    name : string, 
+    birthDate : string, 
+    cpf : string,
+    cidade : string, 
+    estado : string
+}
+
+export type Post = {
+  id: string
+
+  title?: string
+  content: string
+
+  published: boolean
+
+  authorId: string
+  author: User
+
+  parentId?: string | null
+  parent?: Post | null
+  comments: Post[]
+
+  magnitude?: Magnitude | null
+  tema?: Tema | null
+  tipo?: Tipo | null
+  impacto?: Impacto | null
+  custo?: Custo | null
+
+  likes: number
+  dislikes: number
+
+  userReaction?: UserReaction
+
+  createdAt: string
+}

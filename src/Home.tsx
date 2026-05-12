@@ -1,5 +1,5 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
+import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar"
+import { AppSidebar } from "./components/app-sidebar"
 import PostList from "./components/post-list"
 import { useState } from "react"
 

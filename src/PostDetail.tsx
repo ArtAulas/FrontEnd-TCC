@@ -1,5 +1,5 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
+import { SidebarProvider, SidebarTrigger } from "./components/ui/sidebar"
+import { AppSidebar } from "./components/app-sidebar"
 import { PostDetailCard } from "./components/post-detail"
 import CommentList from "./components/comment-list"
 import CreateComment from "./components/create-comment"
@@ -7,10 +7,11 @@ import CreateComment from "./components/create-comment"
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
+import type { Post } from "./lib/types"
 
 export default function PostDetail() {
     const [reload, setReload] = useState(false)
-    const [post, setPost] = useState()
+    const [post, setPost] = useState<Post>()
     const [commentList, setCommentList] = useState([])
     const { id } = useParams()
     const userId = localStorage.getItem("userId")
@@ -42,7 +43,7 @@ export default function PostDetail() {
     }
 
     useEffect(()=>{
-        setPost(null)
+        setPost(undefined)
         buscarPost()
         buscarCommentarios()
     },[id])

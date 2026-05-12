@@ -11,9 +11,14 @@ import {
 import { Magnitudes, Temas, Tipos, Impactos, Custos } from "../lib/types"
 import { Button } from "./ui/button"
 import { Label } from "./ui/label"
+import type { Post } from "../lib/types";
 
-export default function PostList({ reload }) {
-    const [posts, setPosts] = useState([])
+type Props ={
+  reload: boolean
+}
+
+export default function PostList({ reload }:Props) {
+    const [posts, setPosts] = useState<Post[]>([])
     const [magnitude, setMagnitude] = useState("")
     const [tema, setTema] = useState("")
     const [tipo, setTipo] = useState("")
@@ -53,7 +58,7 @@ export default function PostList({ reload }) {
 
     return(
     <>
-    <div className="border rounded-xl p-4 bg-background shadow-sm space-y-4">
+    <div className="sticky top-14 z-10 border rounded-xl p-4 bg-background shadow-sm">
         <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold">
                 Filtros

@@ -1,10 +1,15 @@
 import { useState } from "react"
 import axios from "axios"
 
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "./ui/button"
+import { Textarea } from "./ui/textarea"
 
-export default function CreateComment({ postId, onCommentCreated }) {
+type Props = {
+  postId : string,
+  onCommentCreated : () => void
+}
+
+export default function CreateComment({ postId, onCommentCreated }:Props) {
   const [content, setContent] = useState("")
   const [loading, setLoading] = useState(false)
 

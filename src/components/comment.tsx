@@ -2,11 +2,10 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
+} from "./ui/card"
 
-import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
+import { Avatar, AvatarFallback } from "./ui/avatar"
+import { Button } from "./ui/button"
 
 import {
   Heart,
@@ -14,8 +13,9 @@ import {
   HeartCrack
 } from "lucide-react"
 import { useNavigate } from "react-router-dom"
+import type { Post } from "../lib/types"
 
-export function CommentCard({ post }) {
+export function CommentCard({ post }:{ post : Post }) {
   const navigate = useNavigate()
 
   const handleOpenComments = () =>{

@@ -2,31 +2,21 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardTitle,
 } from "./ui/card"
 import { PostCard } from "./post"
 import { Avatar, AvatarFallback } from "./ui/avatar"
 import { useEffect, useState } from "react"
 import { formatBirthDate } from "../lib/formatDates"
 import axios from "axios"
+import type { User, Post } from "../lib/types"
 
 type Props = {
     id : string
 }
 
-type User = {
-    id : string, 
-    email : string, 
-    name : string, 
-    birthDate : string, 
-    cpf : string,
-    cidade : string, 
-    estado : string
-}
-
 export function User({ id }:Props){
     const [user, setUser] = useState<User>()
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState<Post[]>([])
 
     const fetchData = async() => {
         try{
