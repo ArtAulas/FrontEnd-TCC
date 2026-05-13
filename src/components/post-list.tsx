@@ -60,7 +60,7 @@ export default function PostList({ reload }:Props) {
 
     return(
     <>
-    <div className="sticky top-14 z-10 border rounded-xl p-4 bg-background shadow-sm">
+    <div className="relative z-10 border rounded-xl p-4 bg-background shadow-sm">
         <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold flex items-center gap-2">
             <Filter className="h-4 w-4" />
