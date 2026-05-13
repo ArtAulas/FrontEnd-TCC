@@ -12,6 +12,7 @@ import { Magnitudes, Temas, Tipos, Impactos, Custos } from "../lib/types"
 import { Button } from "./ui/button"
 import { Label } from "./ui/label"
 import type { Post } from "../lib/types";
+import { Filter } from "lucide-react"
 
 type Props ={
   reload: boolean
@@ -24,6 +25,7 @@ export default function PostList({ reload }:Props) {
     const [tipo, setTipo] = useState("")
     const [impacto, setImpacto] = useState("")
     const [custo, setCusto] = useState("")
+    const [openFilters, setOpenFilters] = useState(false)
 
     const buscarPosts = async () => {
         const userId = localStorage.getItem("userId")
@@ -60,19 +62,31 @@ export default function PostList({ reload }:Props) {
     <>
     <div className="sticky top-14 z-10 border rounded-xl p-4 bg-background shadow-sm">
         <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold">
-                Filtros
+            <h2 className="text-sm font-semibold flex items-center gap-2">
+            <Filter className="h-4 w-4" />
+            Filtros
             </h2>
 
+            <div className="flex items-center gap-2">
             <Button
                 variant="ghost"
                 size="sm"
-                className="cursor-pointer"
                 onClick={resetFilter}
             >
-                Limpar filtros
+                Limpar
             </Button>
+
+            <Button
+                variant="outline"
+                size="sm"
+                className="sm:hidden"
+                onClick={() => setOpenFilters(!openFilters)}
+            >
+                {openFilters ? "Fechar" : "Abrir"}
+            </Button>
+            </div>
         </div>
+        <div className={`${openFilters ? "block" : "hidden"} sm:block mt-4`}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
         <div className="space-y-1">
         <Label className="text-sm text-muted-foreground">
@@ -157,6 +171,7 @@ export default function PostList({ reload }:Props) {
                 ))}
             </SelectContent>
             </Select>
+        </div>
         </div>
         </div>
     </div>
