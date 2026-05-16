@@ -73,19 +73,19 @@ export function Welcomeform() {
             <hr className="border-border mt-1" />
           </div>
           <div className="text-sm text-muted-foreground">
-            <div className="flex justify-center gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 justify-items-center">
               <img  src={fotoArthur}
                     alt="Arthur Carelli da Silva"
-                    className="w-24 h-24 rounded-full object-cover" />
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover" />
               <img  src={fotoGuilherme}
                     alt="Guilherme Carvalho de Oliveira"
-                    className="w-24 h-24 rounded-full object-cover" />
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover" />
               <img  src={fotoRenato}
                     alt="Renato Martin Garcia de Oliveira"
-                    className="w-24 h-24 rounded-full object-cover" />
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover" />
               <img  src={fotoVictor}
                     alt="Victor Scervino Brito"
-                    className="w-24 h-24 rounded-full object-cover" />
+                    className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover" />
             </div>
             <p>Somos estudantes de Sistemas de Informação, atuando em diversos ramos da área de tecnologia.</p>
           </div>
